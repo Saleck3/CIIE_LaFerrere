@@ -1,0 +1,9 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    {% if app.user is not null %}
+        <h1>HOLA {{ app.user.username }}!</h1>
+    {% else %}
+        <h1>HELLO WORLD!</h1>
+    {% endif %}
+
+{% endblock %}
