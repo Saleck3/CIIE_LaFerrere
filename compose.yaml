@@ -52,7 +52,7 @@ services:
     networks:
       - backend
     environment:
-      MYSQL_DB: ${MYSQL_DB:-blank_project}
+      MYSQL_DB: ${MYSQL_DB:-CIIE_LaFerrere}
       MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     volumes:
       ## this makes the db persist
