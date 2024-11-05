@@ -12,16 +12,28 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
     {% block stylesheets %}
-
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap">
     {% endblock %}
 
     {% block javascripts %}
+        <script src="https://kit.fontawesome.com/2b2506e7ac.js" crossorigin="anonymous"></script>
+        <script src="https://saleck3.github.io/RickRollJS/WheneverYouNeedSomebody.js"></script>
+        <script src="{{ asset('js/funcionesGenerales.js') }}"></script>
     {% endblock %}
 </head>
 <body>
     <header>
+        <a class="sin_estilo" href="{{ path("app_home") }}">CIIE La ferrere</a>
     </header>
+    <nav>
+        {% if is_granted("ROLE_ADMIN") %}
+            <a href="{{ path("app_dashboard") }}"><i class="fa fa-chart-pie"></i> Dashboard</a>
+        {% endif %}
+    </nav>
     <main>
         {% block body %}{% endblock %}
     </main>

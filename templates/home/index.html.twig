@@ -2,8 +2,10 @@
 {% block body %}
     {% if app.user is not null %}
         <h1>HOLA {{ app.user.username }}!</h1>
+        <a href="{{ path("app_logout") }}">Log out</a>
     {% else %}
         <h1>HELLO WORLD!</h1>
+        <a href="{{ path("app_login") }}">Log in!</a>
     {% endif %}
 
 {% endblock %}
