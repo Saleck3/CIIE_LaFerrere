@@ -1,0 +1,161 @@
+h1, h2, h3, h4, h5, h6 {
+    font-family: "Dosis", sans-serif;
+    font-weight: 600;
+}
+
+body {
+    --color-fondo: #32323d;
+    --color-fondo-claro: #4f4f63;
+    --color-texto: #f2f2f2;
+    --color-destaque: #11ad96;
+    background-color: var(--color-fondo);
+    background-repeat: repeat-x;
+    background-position: top;
+    margin: 0;
+    color: var(--color-texto);
+    font-family: "Dosis", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 400;
+    font-style: normal;
+
+    display: grid;
+    grid-template-areas:
+        'header'
+        'menu'
+        'main'
+        'right'
+        'footer';
+    padding: 1rem;
+}
+
+body * {
+    box-sizing: border-box;
+}
+
+a {
+    color: var(--color-destaque);
+}
+
+nav > a, a.sin_estilo {
+    color: var(--color-texto);
+    text-decoration: none;
+}
+
+header {
+    font-family: "Titan One", sans-serif;
+    font-size: 2rem;
+    text-align: end;
+    user-select: none;
+    border-bottom: var(--color-texto) 1px solid;
+    margin-bottom: 1rem;
+    grid-area: header;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+form label {
+    display: flex;
+}
+
+form input, form button, .button {
+    background-color: var(--color-fondo-claro);
+    border: none;
+    padding: .5rem;
+    margin: 1rem 0;
+    width: 100%;
+    color: var(--color-texto);
+    align-self: center;
+}
+
+form button:hover, .button:hover {
+    cursor: pointer;
+    background-color: var(--color-destaque);
+    color: var(--color-fondo);
+}
+
+table {
+    width: 100%;
+    max-width: 100%;
+    margin-bottom: 1rem;
+    background-color: transparent;
+    text-align: center;
+}
+
+.botones-separados {
+    display: flex;
+    justify-content: space-between;
+}
+
+.botones-separados * {
+    width: auto;
+}
+
+table, th {
+    border: 1px solid var(--color-destaque);
+    border-collapse: collapse;
+}
+
+tr:nth-child(even) {
+    background-color: var(--color-fondo-claro);
+}
+
+@media (min-width: 992px) {
+    header {
+        grid-area: header;
+        display: flex;
+        font-size: 5rem;
+        margin: auto;
+        padding: 1rem;
+        border-bottom: none;
+    }
+
+    nav, menu {
+        grid-area: menu;
+        display: flex;
+        flex-direction: column;
+    }
+
+    main {
+        grid-area: main;
+    }
+
+    sidebar {
+        grid-area: right;
+    }
+
+    footer {
+        grid-area: footer;
+    }
+
+    body {
+        display: grid;
+        grid-template-areas:
+            'header header header header header header'
+            'menu main main main right right'
+            'menu footer footer footer footer footer';
+        gap: 10px;
+        padding: 10px;
+    }
+}
+
+/*
+// X-Small devices (portrait phones, less than 576px)
+
+// Small devices (landscape phones, 576px and up)
+@media (min-width: 576px) { ... }
+
+// Medium devices (tablets, 768px and up)
+@media (min-width: 768px) { ... }
+
+// Large devices (desktops, 992px and up)
+@media (min-width: 992px) { ... }
+
+// X-Large devices (large desktops, 1200px and up)
+@media (min-width: 1200px) { ... }
+
+// XX-Large devices (larger desktops, 1400px and up)
+@media (min-width: 1400px) { ... }
+*/
