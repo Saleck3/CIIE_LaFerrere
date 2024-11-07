@@ -14,7 +14,7 @@ use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 use Symfony\Component\Security\Http\Attribute\IsGranted;
 
-#[IsGranted('ROLE_ADMIN')]
+#[IsGranted('ROLE_SUPER_ADMIN')]
 class UserCrudController extends AbstractCrudController
 {
 
@@ -25,6 +25,14 @@ class UserCrudController extends AbstractCrudController
     public static function getEntityFqcn(): string
     {
         return User::class;
+    }
+
+    public function configureCrud(Crud $crud): Crud
+    {
+        return $crud
+            ->setEntityLabelInSingular('Usuario')
+            ->setEntityLabelInPlural('Usuarios')
+            ->setEntityPermission('ROLE_SUPER_ADMIN');
     }
 
     public function configureActions(Actions $actions): Actions
