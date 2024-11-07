@@ -1,13 +1,15 @@
 {% extends 'base.html.twig' %}
+{% trans_default_domain 'app' %}
 {% block body %}
     <form action="{{ path('app_login') }}" method="POST">
         {% if error %}
-            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
+            <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security')|trans }}</div>
         {% endif %}
 
         {% if app.user %}
             <div class="mb-3">
-                You are logged in as {{ app.user.userIdentifier }}, <a href="{{ path('app_logout') }}">Logout</a>
+                {{ "You are logged in as"|trans }} {{ app.user.userIdentifier }}, <a
+                    href="{{ path('app_logout') }}">{{ "Logout"|trans }}</a>
             </div>
         {% endif %}
 
@@ -22,7 +24,8 @@
         </div>
 
         <div>
-            <label for="_password" class="block text-sm text-gray-700 dark:text-gray-300 font-medium">Password</label>
+            <label for="_password"
+                   class="block text-sm text-gray-700 dark:text-gray-300 font-medium">{{ "Password"|trans }}</label>
             <input type="password"
                    name="_password"
                    class="block w-full shadow-sm border-gray-300 dark:border-transparent dark:text-gray-800 rounded-md border p-2 mt-1 mb-2"/>
@@ -35,12 +38,12 @@
         <div>
             <button type="submit"
                     class="block w-full shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 text-white rounded-md border p-2 mt-4 mb-2">
-                Login
+                {{ "Login"|trans }}
             </button>
         </div>
     </form>
 
     <div class="mt-2 text-center text-gray-600 dark:text-gray-400">
-        Don't have an account? <a href="{{ path('app_register') }}">Register here</a>
+        {{ "Don't have an account?"|trans }} <a href="{{ path('app_register') }}">{{ "Register here"|trans }}</a>
     </div>
 {% endblock %}

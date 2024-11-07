@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="es">
+{% trans_default_domain 'app' %}
 <head>
     <meta charset="UTF-8">
     <title>
-        {% block title %}Welcome!
-        {% endblock %}
+        {% block title %}{{ "Welcome"|trans }}!{% endblock %}
     </title>
     <link rel="icon" href="{{ asset('img/logo.png') }}">
     <meta name="viewport"
@@ -31,7 +31,7 @@
     </header>
     <nav>
         {% if is_granted("ROLE_ADMIN") %}
-            <a href="{{ path("app_dashboard") }}"><i class="fa fa-chart-pie"></i> Dashboard</a>
+            <a href="{{ path("app_dashboard") }}"><i class="fa fa-chart-pie"></i> {{ "Dashboard"|trans }}</a>
         {% endif %}
     </nav>
     <main>

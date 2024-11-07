@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Register{% endblock %}
+{% block title %}{{ "Register"|trans }}{% endblock %}
 
 {% block body %}
     {% for flash_error in app.flashes('verify_email_error') %}
@@ -11,7 +11,7 @@
 
     {{ form_start(registrationForm) }}
     <div class="text-gray-500 mb-4 pb-4 border-b border-gray-300">
-        Ingresa tus credenciales
+        {{ "Input your credentials"|trans }}
     </div>
 
     <div>
@@ -43,12 +43,12 @@
     <div>
         <button type="submit"
                 class="block w-full shadow-sm border-transparent bg-indigo-600 hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400 text-white rounded-md border p-2 mt-4 mb-2">
-            Register
+            {{ "Register"|trans }}
         </button>
     </div>
     {{ form_end(registrationForm) }}
 
     <div class="mt-2 text-center text-gray-600 dark:text-gray-400">
-        Already have an account? <a href="{{ path('app_login') }}">Login here</a>
+        {{ "Already have an account?"|trans }} <a href="{{ path('app_login') }}">{{ "Login here"|trans }}</a>
     </div>
 {% endblock %}

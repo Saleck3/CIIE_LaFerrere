@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" version="1.2">
+    <file source-language="es" target-language="es" datatype="plaintext" original="file.ext">
+        <header>
+            <tool tool-id="symfony" tool-name="Symfony"/>
+        </header>
+        <body>
+            <trans-unit id="u3I07BJ" resname="Register">
+                <source>Register</source>
+                <target>Registrate</target>
+            </trans-unit>
+            <trans-unit id="R608L2o" resname="Ingresa tus credenciales">
+                <source>Ingresa tus credenciales</source>
+                <target>Ingresa tus credenciales</target>
+            </trans-unit>
+            <trans-unit id="53.qk20" resname="Already have an account?">
+                <source>Already have an account?</source>
+                <target>Ya tenes una cuenta?</target>
+            </trans-unit>
+            <trans-unit id="vYlwZG0" resname="Login here">
+                <source>Login here</source>
+                <target>Ingresá</target>
+            </trans-unit>
+            <trans-unit id="SWFhRVF" resname="Log out">
+                <source>Log out</source>
+                <target>Salir</target>
+            </trans-unit>
+            <trans-unit id="v5ZkgWm" resname="HELLO WORLD!">
+                <source>HELLO WORLD!</source>
+                <target>HOLA MUNDO!</target>
+            </trans-unit>
+            <trans-unit id="yKeA0.P" resname="Log in!">
+                <source>Log in!</source>
+                <target>Ingresá</target>
+            </trans-unit>
+            <trans-unit id="bJuJNlg" resname="Aca va a ir alguna estadistica">
+                <source>Aca va a ir alguna estadistica</source>
+                <target>Aca va a ir alguna estadistica</target>
+            </trans-unit>
+            <trans-unit id="Xw_8wYx" resname="Input your credentials">
+                <source>Input your credentials</source>
+                <target>Ingresa tus credenciales</target>
+            </trans-unit>
+        </body>
+    </file>
+</xliff>
