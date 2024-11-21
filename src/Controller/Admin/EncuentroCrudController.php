@@ -2,23 +2,26 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Revista;
+use App\Entity\Encuentro;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
-class RevistaCrudController extends AbstractCrudController
+class EncuentroCrudController extends AbstractCrudController
 {
     public static function getEntityFqcn(): string
     {
-        return Revista::class;
+        return Encuentro::class;
     }
+
 
     public function configureFields(string $pageName): iterable
     {
         return [
-            TextField::new('name', 'Nombre'),
+            DateField::new('date')
         ];
     }
+
 }

@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\UserRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
@@ -37,6 +39,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\Column(length: 255)]
     private ?string $username = null;
+
+    #[ORM\OneToMany(mappedBy: 'docente', targetEntity: Resolucion::class)]
+    private Collection $resoluciones_dicta;
+
+    #[ORM\ManyToMany(targetEntity: Resolucion::class, mappedBy: 'cursantes')]
+    private Collection $resoluciones_cursa;
+
+    public function __construct()
+    {
+        $this->resoluciones_dicta = new ArrayCollection();
+        $this->resoluciones_cursa = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -123,9 +137,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public static function getAvailableRoles(): array
     {
         return [
-            "Usuario" => "ROLE_USER"
-            , "Admin" => "ROLE_ADMIN"
-            , "Super Admin" => "ROLE_SUPER_ADMIN"
+            "Profesor" => "ROLE_TEACHER",
+            "Admin" => "ROLE_ADMIN",
+            "Super Admin" => "ROLE_SUPER_ADMIN",
         ];
     }
 
@@ -137,6 +151,68 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function setUsername(string $username): static
     {
         $this->username = $username;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Resolucion>
+     */
+    public function getResolucionesDicta(): Collection
+    {
+        return $this->resoluciones_dicta;
+    }
+
+    public function addResolucione(Resolucion $resolucione): static
+    {
+        if (!$this->resoluciones_dicta->contains($resolucione)) {
+            $this->resoluciones_dicta->add($resolucione);
+            $resolucione->setDocente($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResolucione(Resolucion $resolucione): static
+    {
+        if ($this->resoluciones_dicta->removeElement($resolucione)) {
+            // set the owning side to null (unless already changed)
+            if ($resolucione->getDocente() === $this) {
+                $resolucione->setDocente(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->username;
+    }
+
+    /**
+     * @return Collection<int, Resolucion>
+     */
+    public function getResolucionesCursa(): Collection
+    {
+        return $this->resoluciones_cursa;
+    }
+
+    public function addResolucionesCursa(Resolucion $resolucionesCursa): static
+    {
+        if (!$this->resoluciones_cursa->contains($resolucionesCursa)) {
+            $this->resoluciones_cursa->add($resolucionesCursa);
+            $resolucionesCursa->addCursante($this);
+        }
+
+        return $this;
+    }
+
+    public function removeResolucionesCursa(Resolucion $resolucionesCursa): static
+    {
+        if ($this->resoluciones_cursa->removeElement($resolucionesCursa)) {
+            $resolucionesCursa->removeCursante($this);
+        }
 
         return $this;
     }

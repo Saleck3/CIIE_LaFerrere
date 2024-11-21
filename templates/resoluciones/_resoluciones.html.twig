@@ -1,0 +1,7 @@
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
+    {% if resoluciones|length > 0 %}
+        {% for resolucion in resoluciones %}
+            {{ include('resoluciones/_resolucion.html.twig', {resolucion: resolucion}) }}
+        {% endfor %}
+    {% endif %}
+</div>

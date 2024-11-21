@@ -63,8 +63,6 @@ class UserCrudController extends AbstractCrudController
                 ->allowMultipleChoices()
                 ->setChoices(User::getAvailableRoles())
                 ->renderExpanded()
-
         ];
     }
-
 }

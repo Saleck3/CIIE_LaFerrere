@@ -2,18 +2,20 @@
 
 namespace App\Controller\Admin;
 
-use App\Entity\Curso;
+use App\Entity\Encuentro;
 use App\Entity\Resolucion;
-use App\Repository\CursoRepository;
+use Doctrine\ORM\QueryBuilder;
+use EasyCorp\Bundle\EasyAdminBundle\Config\Actions;
 use EasyCorp\Bundle\EasyAdminBundle\Controller\AbstractCrudController;
-use EasyCorp\Bundle\EasyAdminBundle\Field\ChoiceField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\AssociationField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\CollectionField;
+use EasyCorp\Bundle\EasyAdminBundle\Field\DateField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\IdField;
-use EasyCorp\Bundle\EasyAdminBundle\Field\TextEditorField;
 use EasyCorp\Bundle\EasyAdminBundle\Field\TextField;
 
 class ResolucionCrudController extends AbstractCrudController
 {
-    public function __construct(private readonly CursoRepository $cursoRepository)
+    public function __construct()
     {
     }
 
@@ -27,9 +29,29 @@ class ResolucionCrudController extends AbstractCrudController
     {
         return [
             IdField::new('id')->hideOnForm(),
-            TextField::new('name', 'Nombre'),
-            //TODO Agregar campos select para Curso, Cohorte, Profesor y revista
+            TextField::new('Clave'),
+            AssociationField::new('curso'),
+            AssociationField::new('cohorte'),
+            AssociationField::new('docente')->setQueryBuilder(
+                fn(QueryBuilder $queryBuilder) => $queryBuilder->where("entity.roles LIKE '%%ROLE_TEACHER%%'")
+            )->setSortProperty('username'),
+            CollectionField::new('encuentros')->useEntryCrudForm(),
+            AssociationField::new('cursantes')->setSortProperty('username'),
         ];
+    }
+
+    public function addEncuentro(Encuentro $encuentro): void
+    {
+        $encuentro->setResolucion($this);
+
+        if (!$this->encuentros->contains($encuentro)) {
+            $this->encuentros->add($encuentro);
+        }
+    }
+
+    public function removeEncuentro(Encuentro $encuentro): void
+    {
+        $this->encuentros->removeElement($encuentro);
     }
 
 }

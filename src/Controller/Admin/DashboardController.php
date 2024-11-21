@@ -5,7 +5,6 @@ namespace App\Controller\Admin;
 use App\Entity\Cohorte;
 use App\Entity\Curso;
 use App\Entity\Resolucion;
-use App\Entity\Revista;
 use App\Entity\User;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Crud;
 use EasyCorp\Bundle\EasyAdminBundle\Config\Dashboard;
@@ -39,7 +38,6 @@ class DashboardController extends AbstractDashboardController
         if ($this->isGranted("ROLE_SUPER_ADMIN")) {
             yield MenuItem::linkToCrud('Usuarios', 'fas fa-user', User::class);
         }
-        yield MenuItem::linkToCrud('Revistas', 'fas fa-file-text', Revista::class);
         yield MenuItem::linkToCrud('Cohortes', 'fas fa-calendar-alt', Cohorte::class);
         yield MenuItem::linkToCrud('Cursos', 'fas fa-school', Curso::class);
         yield MenuItem::linkToCrud('Resoluciones', 'fas fa-school-circle-check', Resolucion::class);

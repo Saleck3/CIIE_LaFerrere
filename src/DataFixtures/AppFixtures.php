@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Cohorte;
 use App\Entity\Curso;
+use App\Entity\Resolucion;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -24,6 +25,13 @@ class AppFixtures extends Fixture
         $adminUser->setPassword($this->passwordHasher->hashPassword($adminUser, "WGb8dt669Y4PHF"));
         $adminUser->setRoles(['ROLE_SUPER_ADMIN']);
         $manager->persist($adminUser);
+
+        $profeUser = new User();
+        $profeUser->setUsername('Profesor');
+        $profeUser->setEmail('profe@coso.com');
+        $profeUser->setPassword($this->passwordHasher->hashPassword($profeUser, "asdagrgqe546"));
+        $profeUser->setRoles(['ROLE_TEACHER']);
+        $manager->persist($profeUser);
 
         $cohorte = new Cohorte();
         $cohorte->setName("1ch24");
@@ -46,6 +54,13 @@ class AppFixtures extends Fixture
         $curso2->setName("Ambiente Natural y Social");
         $curso2->setClave("ANyS-Ini");
         $manager->persist($curso2);
+
+        $resolucion = new Resolucion();
+        $resolucion->setClave("Resolucion default");
+        $resolucion->setCurso($curso);
+        $resolucion->setCohorte($cohorte);
+        $resolucion->setDocente($profeUser);
+        $manager->persist($resolucion);
 
         $manager->flush();
     }

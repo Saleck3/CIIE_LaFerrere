@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" class="dark">
 {% trans_default_domain 'app' %}
 <head>
     <meta charset="UTF-8">
@@ -17,6 +17,12 @@
         <link rel="stylesheet" href="{{ asset('css/style.css') }}">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Titan+One&display=swap">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Dosis:wght@200..800&display=swap">
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script>
+            tailwind.config = {
+                darkMode: 'class'
+            }
+        </script>
     {% endblock %}
 
     {% block javascripts %}
@@ -37,6 +43,5 @@
     <main>
         {% block body %}{% endblock %}
     </main>
-
 </body>
 </html>

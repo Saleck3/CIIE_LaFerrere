@@ -26,6 +26,14 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         parent::__construct($registry, User::class);
     }
 
+    public function getDocentesQuery(): \Doctrine\ORM\Query
+    {
+        return $this->createQueryBuilder('user')
+                ->where('user.roles LIKE :roles')
+                ->setParameter('roles', 'ROLE_TEACHER')
+                ->getQuery();
+    }
+
     /**
      * Used to upgrade (rehash) the user's password automatically over time.
      */

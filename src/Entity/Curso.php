@@ -18,15 +18,12 @@ class Curso
     #[ORM\Column(length: 255)]
     private ?string $name = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $clave = null;
-
     #[ORM\OneToMany(mappedBy: 'Curso', targetEntity: Resolucion::class)]
-    private Collection $Resoluciones;
+    private Collection $resoluciones;
 
     public function __construct()
     {
-        $this->Resoluciones = new ArrayCollection();
+        $this->resoluciones = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -63,13 +60,13 @@ class Curso
      */
     public function getResoluciones(): Collection
     {
-        return $this->Resoluciones;
+        return $this->resoluciones;
     }
 
     public function addResolucione(Resolucion $resolucione): static
     {
-        if (!$this->Resoluciones->contains($resolucione)) {
-            $this->Resoluciones->add($resolucione);
+        if (!$this->resoluciones->contains($resolucione)) {
+            $this->resoluciones->add($resolucione);
             $resolucione->setCurso($this);
         }
 
@@ -78,7 +75,7 @@ class Curso
 
     public function removeResolucione(Resolucion $resolucione): static
     {
-        if ($this->Resoluciones->removeElement($resolucione)) {
+        if ($this->resoluciones->removeElement($resolucione)) {
             // set the owning side to null (unless already changed)
             if ($resolucione->getCurso() === $this) {
                 $resolucione->setCurso(null);
@@ -86,5 +83,10 @@ class Curso
         }
 
         return $this;
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 }
