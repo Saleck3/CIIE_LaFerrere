@@ -1,7 +1,19 @@
-<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-3 gap-4">
-    {% if resoluciones|length > 0 %}
-        {% for resolucion in resoluciones %}
-            {{ include('resoluciones/_resolucion.html.twig', {resolucion: resolucion}) }}
-        {% endfor %}
-    {% endif %}
+<div class="w-full">
+    <table class=" table-auto border-collapse border border-slate-500 ">
+        <thead>
+        <tr>
+            <th>Curso</th>
+            <th>Clave</th>
+            <th>Cohorte</th>
+            <th>Cursantes</th>
+            <th>Acciones</th>
+        </tr>
+        </thead>
+        <tbody>
+            {% if resoluciones|length > 0 %}
+                {% for resolucion in resoluciones %}
+                    {{ include('resoluciones/_resolucion.html.twig', {resolucion: resolucion}) }}
+                {% endfor %}
+            {% endif %}
+
 </div>

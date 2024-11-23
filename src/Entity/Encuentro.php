@@ -34,7 +34,6 @@ class Encuentro
     public function setDate(\DateTimeInterface $date): static
     {
         $this->date = $date;
-
         return $this;
     }
 

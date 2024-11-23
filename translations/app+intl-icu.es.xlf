@@ -35,7 +35,7 @@
             </trans-unit>
             <trans-unit id="DiImtSN" resname="Welcome">
                 <source>Welcome</source>
-                <target>Bienvenido</target>
+                <target>Bienvenildo</target>
             </trans-unit>
         </body>
     </file>

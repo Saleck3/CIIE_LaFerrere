@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ resolucion.curso.name }} - {{ resolucion.cohorte.name }}{% endblock %}
+
+{% block body %}
+
+    <h1 class="text-5xl text-center">{{ resolucion.curso.name }}</h1>
+    <div class="flex justify-evenly mt-5">
+        <p>Clave: {{ resolucion.clave }}</p>
+        <p>Cohorte: {{ resolucion.cohorte.name }}</p>
+    </div>
+    <table class=" table-auto border-collapse border border-slate-500 mt-5">
+        <thead>
+        <tr>
+            <th>Nombre</th>
+            {% for encuentro in resolucion.encuentros %}
+                <th>{{ encuentro.date|date('d/m') }}</th>
+            {% endfor %}
+        </tr>
+        </thead>
+        <tbody>
+            {% for cursante in resolucion.cursantes %}
+                <tr>
+                    <td>{{ cursante.username }}</td>
+                    {% for encuentro in resolucion.encuentros %}
+                        <td>{{ encuentro.date|date('d/m') }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

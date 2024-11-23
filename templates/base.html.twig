@@ -36,11 +36,16 @@
         <a class="sin_estilo" href="{{ path("app_home") }}">CIIE La ferrere</a>
     </header>
     <nav>
+        {% if app.user is null %}
+            <a class="link-light" href="{{ path("app_login") }}">{{ "Ingresa!"|trans }}</a>
+        {% else %}
+            <a href="{{ path("app_logout") }}">{{ "Salir"|trans }}</a>
+        {% endif %}
         {% if is_granted("ROLE_ADMIN") %}
             <a href="{{ path("app_dashboard") }}"><i class="fa fa-chart-pie"></i> {{ "Dashboard"|trans }}</a>
         {% endif %}
     </nav>
-    <main>
+    <main class="container mx-auto">
         {% block body %}{% endblock %}
     </main>
 </body>

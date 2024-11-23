@@ -1,13 +1,9 @@
 {% extends 'base.html.twig' %}
 {% block body %}
     {% if app.user is null %}
-        <div class="text-2xl">{{ "HELLO WORLD!"|trans }}</div>
-        <a class="link-light" href="{{ path("app_login") }}">{{ "Log in!"|trans }}</a>
+        <div class="text-2xl mb-5 text-center">{{ "HELLO WORLD!"|trans }}</div>
     {% else %}
-        <div class="text-2xl">HOLA {{ app.user.username }}!</div>
-        <a href="{{ path("app_logout") }}">{{ "Log out"|trans }}</a>
+        <div class="text-2xl mb-5 text-center">HOLA {{ app.user.username|capitalize }}!</div>
+        {{ include('resoluciones/_resoluciones.html.twig', {resoluciones: resoluciones}) }}
     {% endif %}
-
-    {{ include('resoluciones/_resoluciones.html.twig', {resoluciones: resoluciones}) }}
-
 {% endblock %}
