@@ -46,10 +46,14 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Resolucion::class, mappedBy: 'cursantes')]
     private Collection $resoluciones_cursa;
 
+    #[ORM\ManyToMany(targetEntity: Encuentro::class, inversedBy: 'asistentes')]
+    private Collection $asistencias;
+
     public function __construct()
     {
         $this->resoluciones_dicta = new ArrayCollection();
         $this->resoluciones_cursa = new ArrayCollection();
+        $this->asistencias = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -213,6 +217,30 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         if ($this->resoluciones_cursa->removeElement($resolucionesCursa)) {
             $resolucionesCursa->removeCursante($this);
         }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Encuentro>
+     */
+    public function getAsistencias(): Collection
+    {
+        return $this->asistencias;
+    }
+
+    public function addAsistencia(Encuentro $asistencia): static
+    {
+        if (!$this->asistencias->contains($asistencia)) {
+            $this->asistencias->add($asistencia);
+        }
+
+        return $this;
+    }
+
+    public function removeAsistencia(Encuentro $asistencia): static
+    {
+        $this->asistencias->removeElement($asistencia);
 
         return $this;
     }
