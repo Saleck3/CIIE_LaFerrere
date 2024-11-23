@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Cohorte;
 use App\Entity\Curso;
+use App\Entity\Encuentro;
 use App\Entity\Resolucion;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
@@ -33,6 +34,12 @@ class AppFixtures extends Fixture
         $profeUser->setRoles(['ROLE_TEACHER']);
         $manager->persist($profeUser);
 
+        $alumnoUser = new User();
+        $alumnoUser->setUsername('alumno');
+        $alumnoUser->setEmail('alumno@coso.com');
+        $alumnoUser->setPassword($this->passwordHasher->hashPassword($alumnoUser, "asdagrgqe546"));
+        $manager->persist($alumnoUser);
+
         $cohorte = new Cohorte();
         $cohorte->setName("1ch24");
         $cohorte->setStartDate(new \DateTime('2024-02-01'));
@@ -60,7 +67,19 @@ class AppFixtures extends Fixture
         $resolucion->setCurso($curso);
         $resolucion->setCohorte($cohorte);
         $resolucion->setDocente($profeUser);
+        $resolucion->addCursante($alumnoUser);
         $manager->persist($resolucion);
+
+        $encuentro1Curso1 = new Encuentro();
+        $encuentro1Curso1->setResolucion($resolucion);
+        $encuentro1Curso1->setDate(new \DateTime('2024-01-01'));
+        $encuentro1Curso1->addAsistente($alumnoUser);
+        $manager->persist($encuentro1Curso1);
+
+        $encuentro2Curso1 = new Encuentro();
+        $encuentro2Curso1->setResolucion($resolucion);
+        $encuentro2Curso1->setDate(new \DateTime('2024-02-02'));
+        $manager->persist($encuentro2Curso1);
 
         $manager->flush();
     }
