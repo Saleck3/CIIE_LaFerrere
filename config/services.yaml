@@ -24,3 +24,8 @@ services:
     # please note that last definitions always *replace* previous ones
     gedmo.listener.softdeleteable:
         class: Gedmo\SoftDeleteable\SoftDeleteableListener
+    
+    doctrine.fixtures.purger.orm_purger_factory:
+        class: App\Purgers\MySQLPurgerFactory
+        tags:
+            - { name: doctrine.fixtures.purger_factory, alias: default }
