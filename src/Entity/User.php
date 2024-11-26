@@ -49,6 +49,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\ManyToMany(targetEntity: Encuentro::class, inversedBy: 'asistentes')]
     private Collection $asistencias;
 
+    #[ORM\Column]
+    private ?int $dni = null;
+
     public function __construct()
     {
         $this->resoluciones_dicta = new ArrayCollection();
@@ -241,6 +244,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     public function removeAsistencia(Encuentro $asistencia): static
     {
         $this->asistencias->removeElement($asistencia);
+
+        return $this;
+    }
+
+    public function getDni(): ?int
+    {
+        return $this->dni;
+    }
+
+    public function setDni(int $dni): static
+    {
+        $this->dni = $dni;
 
         return $this;
     }

@@ -8,7 +8,6 @@ use Doctrine\Persistence\ManagerRegistry;
 
 /**
  * @extends ServiceEntityRepository<Encuentro>
- *
  * @method Encuentro|null find($id, $lockMode = null, $lockVersion = null)
  * @method Encuentro|null findOneBy(array $criteria, array $orderBy = null)
  * @method Encuentro[]    findAll()
@@ -21,28 +20,27 @@ class EncuentroRepository extends ServiceEntityRepository
         parent::__construct($registry, Encuentro::class);
     }
 
-//    /**
-//     * @return Encuentro[] Returns an array of Encuentro objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('e.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+    public function add(Encuentro $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->persist($entity);
 
-//    public function findOneBySomeField($value): ?Encuentro
-//    {
-//        return $this->createQueryBuilder('e')
-//            ->andWhere('e.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->getQuery()
-//            ->getOneOrNullResult()
-//        ;
-//    }
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
+
+    //Alias
+    public function save(Encuentro $entity, bool $flush = false): void
+    {
+        $this->add($entity, $flush);
+    }
+
+    public function remove(Encuentro $entity, bool $flush = false): void
+    {
+        $this->getEntityManager()->remove($entity);
+
+        if ($flush) {
+            $this->getEntityManager()->flush();
+        }
+    }
 }

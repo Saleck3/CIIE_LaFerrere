@@ -26,7 +26,7 @@ class Resolucion
     #[ORM\JoinColumn(nullable: false)]
     private ?Cohorte $cohorte = null;
 
-    #[ORM\ManyToOne(inversedBy: 'resoluciones')]
+    #[ORM\ManyToOne(inversedBy: 'resoluciones_dicta')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $docente = null;
 

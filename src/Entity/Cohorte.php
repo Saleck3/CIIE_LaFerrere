@@ -25,7 +25,7 @@ class Cohorte
     #[ORM\Column(type: Types::DATE_MUTABLE)]
     private ?\DateTimeInterface $end_date = null;
 
-    #[ORM\OneToMany(mappedBy: 'Cohorte', targetEntity: Resolucion::class)]
+    #[ORM\OneToMany(mappedBy: 'cohorte', targetEntity: Resolucion::class)]
     private Collection $resoluciones;
 
     public function __construct()

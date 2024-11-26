@@ -23,6 +23,7 @@ class AppFixtures extends Fixture
         $adminUser = new User();
         $adminUser->setUsername('Saleck');
         $adminUser->setEmail('admin@example.com');
+        $adminUser->setDni("1111111");
         $adminUser->setPassword($this->passwordHasher->hashPassword($adminUser, "WGb8dt669Y4PHF"));
         $adminUser->setRoles(['ROLE_SUPER_ADMIN']);
         $manager->persist($adminUser);
@@ -30,6 +31,7 @@ class AppFixtures extends Fixture
         $profeUser = new User();
         $profeUser->setUsername('Profesor');
         $profeUser->setEmail('profe@coso.com');
+        $profeUser->setDni("222222222");
         $profeUser->setPassword($this->passwordHasher->hashPassword($profeUser, "asdagrgqe546"));
         $profeUser->setRoles(['ROLE_TEACHER']);
         $manager->persist($profeUser);
@@ -37,6 +39,7 @@ class AppFixtures extends Fixture
         $alumnoUser = new User();
         $alumnoUser->setUsername('alumno');
         $alumnoUser->setEmail('alumno@coso.com');
+        $alumnoUser->setDni("333333333");
         $alumnoUser->setPassword($this->passwordHasher->hashPassword($alumnoUser, "asdagrgqe546"));
         $manager->persist($alumnoUser);
 
