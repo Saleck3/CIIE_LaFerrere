@@ -1,5 +1,7 @@
 # CIIE La Ferrere
 
+[![es](https://img.shields.io/badge/lang-es-yellow.svg)](README.es.md)
+
 This project is a user and courses manager for the Training, Information, and Educational Research Center No. 201 "Julio R. Cao" of Gregorio de Laferrere in La Matanza. (CIIE 201)
 
 ## Features

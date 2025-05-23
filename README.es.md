@@ -1,5 +1,7 @@
 # CIIE La Ferrere
 
+[![en](https://img.shields.io/badge/lang-en-red.svg)](README.md)
+
 Este proyecto es un administrador de usuarios y clases para el Centro de Capacitación, Información e Investigación Educativa N°201 “Julio R. Cao” de Gregorio de Laferrere en la Matanza (CIIE 201)
 
 ## Funcionalidades
